@@ -1,0 +1,19 @@
+<p>Dashboard</p>
+
+@if(empResponse){
+    <p>{{empResponse.employeeId}}</p>
+    <p>{{empResponse.employeeName}}</p>
+    <p>{{empResponse | json}}</p>
+<p>{{empResponse.email}}</p>
+<p>{{empResponse.salary}}</p>
+<p>{{empResponse.designation}}</p>
+<p>{{empResponse.departmentId}}</p>
+<p>{{empResponse.departmentName}}</p>
+}
+
+@else{
+    <p>Please wait...</p>
+    <p>Loading Employee Data...</p>
+    <p>wait for few seconds...</p>
+    
+}

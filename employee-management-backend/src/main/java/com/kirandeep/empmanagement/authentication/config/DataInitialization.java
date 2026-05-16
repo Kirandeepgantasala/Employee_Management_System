@@ -1,5 +1,7 @@
 package com.kirandeep.empmanagement.authentication.config;
 
+import com.kirandeep.empmanagement.entity.Department;
+import com.kirandeep.empmanagement.repository.DepartmentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,5 +45,25 @@ public class DataInitialization {
 				appUserRepository.save(hr);
 			}
 	};
+}
+@Bean
+public CommandLineRunner createDepartments(DepartmentRepository departmentRepository){
+		return args -> {
+			if(departmentRepository.count()==0){
+				Department d1 = new Department();
+				d1.setDepartmentName("IT");
+
+				Department d2 = new Department();
+				d2.setDepartmentName("HR");
+
+				Department d3 = new Department();
+				d3.setDepartmentName("FINANCE");
+
+				departmentRepository.save(d1);
+				departmentRepository.save(d2);
+				departmentRepository.save(d3);
+
+			}
+		};
 }
 }

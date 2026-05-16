@@ -10,7 +10,7 @@ import { UserResponse } from './model/UserResponse';
 import { UpdateUserRole } from './model/UpdateUserRole';
 import { UpdateUserStatus } from './model/UpdateUserStatus';
 import { Router } from '@angular/router';
-import { LoginRequest } from './model/loginRequest';
+import { LoginRequest } from './model/temp';
 import { EmployeeResponse } from './model/EmployeeResponse';
 import { PasswordResetRequest } from './model/PasswordResetRequest';
 import { ForgotPassword } from './model/ForgotPassword';

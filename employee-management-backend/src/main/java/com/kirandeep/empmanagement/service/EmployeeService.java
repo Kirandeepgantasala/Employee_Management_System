@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.kirandeep.empmanagement.authentication.repository.AppUserRepository;
+import com.kirandeep.empmanagement.authentication.repository.PasswordResetTokenRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,20 +26,17 @@ import com.kirandeep.empmanagement.repository.DepartmentRepository;
 import com.kirandeep.empmanagement.repository.EmployeeRepository;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class EmployeeService {
 
-	private EmployeeRepository employeeRepository;
-	private DepartmentRepository departmentRepository;
-	private PasswordEncoder passwordEncoder;
-	private EmailService emailService;
-	private PasswordResetTokenService passwordResetTokenService;
-	EmployeeService(EmployeeRepository employeeRepository,DepartmentRepository departmentRepository, PasswordEncoder passwordEncoder, EmailService emailService, PasswordResetTokenService passwordResetTokenService){
-		this.employeeRepository=employeeRepository;
-		this.departmentRepository=departmentRepository;
-		this.passwordEncoder=passwordEncoder;
-		this.emailService=emailService;
-		this.passwordResetTokenService=passwordResetTokenService;
-	}
+	private final EmployeeRepository employeeRepository;
+	private final DepartmentRepository departmentRepository;
+	private final PasswordEncoder passwordEncoder;
+	private final EmailService emailService;
+	private final PasswordResetTokenService passwordResetTokenService;
+	private final AppUserRepository appUserRepository;
+    private final PasswordResetTokenRepository passwordResetTokenRepository;
 	
 	public EmployeeDto addEmployee(CreateEmployeeRequestDto empRequestDto) {
 		
@@ -111,7 +112,18 @@ Department dept = departmentRepository.findById(empRequestDto.getDepartmentId())
 	}
 	
 	public void deleteEmployee(Integer employeeId) {
-		employeeRepository.deleteById(employeeId);
+	Employee employee =	employeeRepository.findById(employeeId).orElseThrow(()->
+         new EmployeeNotFoundException("Employee Not found with id:" + employeeId)
+
+        );
+	AppUser appUser = employee.getAppUser();
+	if(appUser!=null){
+		passwordResetTokenRepository.deleteByAppUser(appUser);
+	}
+		employeeRepository.delete(employee);
+		if(appUser!=null){
+			appUserRepository.delete(appUser);
+		}
 	}
 	
 	public EmployeeDto updateEmployeeDetails(Integer employeeId,UpdateEmployeeRequestDto updateRequestDto) {

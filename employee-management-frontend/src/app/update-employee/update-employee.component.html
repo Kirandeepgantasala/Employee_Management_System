@@ -1,0 +1,169 @@
+<div class="row justify-content-center mt-4">
+
+  <div class="col-lg-7">
+
+    <div
+      class="card border-0 shadow-lg rounded-4 overflow-hidden"
+      style="background-color: rgba(255,255,255,0.94);"
+    >
+
+      <!-- Header -->
+      <div
+        class="card-header border-0 py-3"
+        style="
+          background: linear-gradient(to right,#5d5b81,#7f53ac);
+          color:white;
+        "
+      >
+
+        <h4
+          class="mb-0 fw-bold"
+          style="font-family:'Poppins',sans-serif;"
+        >
+          ✏️ Update Employee Details
+        </h4>
+
+      </div>
+
+      <!-- Body -->
+      <div class="card-body p-4">
+
+        <form #updateForm="ngForm" (ngSubmit)="onSubmit()">
+
+          <!-- Employee Name -->
+          <div class="mb-4">
+
+            <label
+              for="empName"
+              class="form-label fw-semibold"
+              style="color:#403b5f;"
+            >
+              Employee Name
+            </label>
+
+            <input
+              type="text"
+              name="empName"
+              id="empName"
+              [(ngModel)]="updateEmployeeRequest.employeeName"
+              placeholder="Enter Employee Name"
+              class="form-control form-control-lg rounded-3 border-0 shadow-sm"
+              style="background-color:#f8f7ff;"
+            >
+
+          </div>
+
+          <!-- Email -->
+          <div class="mb-4">
+
+            <label
+              for="email"
+              class="form-label fw-semibold"
+              style="color:#403b5f;"
+            >
+              Employee Email
+            </label>
+
+            <input
+              type="email"
+              #email="ngModel"
+              name="email"
+              id="email"
+              [(ngModel)]="updateEmployeeRequest.email"
+              placeholder="Enter Employee Email"
+              class="form-control form-control-lg rounded-3 border-0 shadow-sm"
+              style="background-color:#f8f7ff;"
+              email
+              required
+            >
+
+            <!-- Required -->
+            <div
+              *ngIf="email.errors?.['required'] && email.touched"
+              class="small mt-2"
+              style="color:#d63384;"
+            >
+              Email is required
+            </div>
+
+            <!-- Invalid -->
+            <div
+              *ngIf="email.errors?.['email'] && email.touched"
+              class="small mt-2"
+              style="color:#d63384;"
+            >
+              Please enter a valid email address
+            </div>
+
+          </div>
+
+          <!-- Designation -->
+          <div class="mb-4">
+
+            <label
+              for="designation"
+              class="form-label fw-semibold"
+              style="color:#403b5f;"
+            >
+              Designation
+            </label>
+
+            <input
+              type="text"
+              name="designation"
+              id="designation"
+              [(ngModel)]="updateEmployeeRequest.designation"
+              placeholder="Enter Employee Designation"
+              class="form-control form-control-lg rounded-3 border-0 shadow-sm"
+              style="background-color:#f8f7ff;"
+            >
+
+          </div>
+
+          <!-- Salary -->
+          <div class="mb-4">
+
+            <label
+              for="salary"
+              class="form-label fw-semibold"
+              style="color:#403b5f;"
+            >
+              Salary
+            </label>
+
+            <input
+              type="number"
+              name="salary"
+              id="salary"
+              [(ngModel)]="updateEmployeeRequest.salary"
+              placeholder="Enter Employee Salary"
+              class="form-control form-control-lg rounded-3 border-0 shadow-sm"
+              style="background-color:#f8f7ff;"
+            >
+
+          </div>
+
+          <!-- Button -->
+          <div class="d-grid mt-4">
+
+            <button
+              class="btn btn-lg text-white fw-semibold rounded-3"
+              style="
+                background: linear-gradient(to right,#5d5b81,#7f53ac);
+                border:none;
+              "
+            >
+              Update Employee
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

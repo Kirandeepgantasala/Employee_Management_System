@@ -1,0 +1,160 @@
+<!-- HR Dashboard Header -->
+<div
+  class="card border-0 shadow-lg rounded-4 overflow-hidden"
+  style="background-color: rgba(255,255,255,0.94);"
+>
+
+  <div
+    class="card-body p-3"
+    style="
+      background: linear-gradient(to right,#5d5b81,#7f53ac);
+      color:white;
+    "
+  >
+
+    <div class="d-flex flex-column">
+
+      <!-- Heading -->
+      <h2
+        class="fw-bold mb-2"
+        style="
+          font-family:'Poppins',sans-serif;
+          letter-spacing:0.5px;
+        "
+      >
+        📊 HR Dashboard
+      </h2>
+
+      <!-- Welcome -->
+      <h5
+        class="mb-3"
+        style="
+          font-family:'Segoe UI',sans-serif;
+          color:#f3e8ff;
+        "
+      >
+        Welcome, {{email}}
+      </h5>
+
+      <!-- Role Badge -->
+      <div>
+
+        <span
+          class="badge rounded-pill px-3 py-2"
+          style="
+            background-color: rgba(255,255,255,0.2);
+            color:#ffffff;
+            font-size:0.95rem;
+            font-family:'Poppins',sans-serif;
+            backdrop-filter: blur(4px);
+          "
+        >
+          Role: {{role}}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Charts Section -->
+<div class="container-fluid mt-4">
+
+  <div class="row g-4">
+
+    <!-- Chart 1 -->
+    <div class="col-lg-6">
+
+      <div
+        class="card border-0 shadow-lg rounded-4 h-100"
+        style="
+          background-color: #f8f7ff;
+        "
+      >
+
+        <div class="card-body p-4">
+
+          <h5
+            class="text-center fw-bold mb-4"
+            style="
+              color:#403b5f;
+              font-family:'Poppins',sans-serif;
+            "
+          >
+            Employees By Designation
+          </h5>
+
+          <canvas id="myChart"></canvas>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Chart 2 -->
+    <div class="col-lg-6">
+
+      <div
+        class="card border-0 shadow-lg rounded-4 h-100"
+        style="
+          background-color:  #f8f7ff;
+        "
+      >
+
+        <div class="card-body p-4">
+
+          <h5
+            class="text-center fw-bold mb-4"
+            style="
+              color:#403b5f;
+              font-family:'Poppins',sans-serif;
+            "
+          >
+            Employees Count By Department
+          </h5>
+
+          <canvas id="myChart1"></canvas>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Chart 3 -->
+    <div class="col-lg-8 mx-auto">
+
+      <div
+        class="card border-0 shadow-lg rounded-4 h-100"
+        style="
+          background-color: #f8f7ff;
+        "
+      >
+
+        <div class="card-body p-4">
+
+          <h5
+            class="text-center fw-bold mb-4"
+            style="
+              color:#403b5f;
+              font-family:'Poppins',sans-serif;
+            "
+          >
+            Average Salary By Department
+          </h5>
+
+          <canvas id="myBarChart"></canvas>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

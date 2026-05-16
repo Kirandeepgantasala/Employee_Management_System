@@ -1,0 +1,10 @@
+table th,
+table td{
+    padding: 16px;
+    vertical-align: middle;
+}
+
+table{
+    border-radius: 10px;
+    overflow: hidden;
+}

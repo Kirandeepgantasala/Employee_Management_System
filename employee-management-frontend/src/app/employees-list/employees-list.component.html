@@ -1,0 +1,231 @@
+<!-- Success Message -->
+<div
+  *ngIf="message"
+  class="alert alert-success border-0 shadow-sm rounded-3 mt-3"
+  role="alert"
+  style="
+    background-color:#e8f7ee;
+    color:#166534;
+  "
+>
+  {{message}}
+</div>
+
+<!-- Error Message -->
+<div
+  *ngIf="errorMessage"
+  class="alert border-0 shadow-sm rounded-3 mt-3"
+  role="alert"
+  style="
+    background-color:#fdecec;
+    color:#b42318;
+  "
+>
+  {{errorMessage}}
+</div>
+
+<!-- Breadcrumb -->
+<nav
+  style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%23808080'/%3E%3C/svg%3E&#34;);"
+  aria-label="breadcrumb"
+  class="mt-4"
+>
+
+  <ol
+    class="breadcrumb px-3 py-2 rounded-3 shadow-sm"
+    style="
+      background-color: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+    "
+  >
+
+    <li class="breadcrumb-item">
+
+      <a
+        routerLink="/employees"
+        class="text-decoration-none"
+        style="
+          color:#6c63ff;
+          font-weight:500;
+        "
+      >
+        Home
+      </a>
+
+    </li>
+
+    <li
+      class="breadcrumb-item"
+      style="color:#5d5b81;"
+    >
+      Employees
+    </li>
+
+    <li
+      class="breadcrumb-item active"
+      aria-current="page"
+      style="color:#6b7280;"
+    >
+      Employees List
+    </li>
+
+  </ol>
+
+</nav>
+
+<!-- Heading -->
+<div class="mt-4 mb-3">
+
+  <h2
+    class="fw-bold"
+    style="
+      color:#403b5f;
+      font-family:'Poppins',sans-serif;
+    "
+  >
+    👥 Employees List
+  </h2>
+
+</div>
+
+<!-- Table Card -->
+<div
+  class="card border-0 shadow-lg rounded-4 overflow-hidden"
+  style="background-color: rgba(255,255,255,0.94);"
+>
+
+  <div class="table-responsive">
+
+    <table
+      *ngIf="employeeResponse | async as data"
+      class="table table-hover align-middle mb-0"
+    >
+
+      <!-- Table Header -->
+      <thead
+        style="
+          background: linear-gradient(to right,#5d5b81,#7f53ac);
+          color:white;
+        "
+      >
+
+        <tr>
+
+          <th class="py-3 ps-4">#</th>
+
+          <th>Employee ID</th>
+
+          <th>Employee Name</th>
+
+          <th>Email</th>
+
+          <th>Salary</th>
+
+          <th>Role</th>
+
+          <th>Department</th>
+
+          <th class="text-center">Update</th>
+
+          <th class="text-center pe-4">Delete</th>
+
+        </tr>
+
+      </thead>
+
+      <!-- Table Body -->
+      <tbody
+        class="fs-6"
+        style="
+          color:#403b5f;
+          background-color:#f8f7ff;
+        "
+      >
+
+        <tr
+          *ngFor="let d of data; let i=index;"
+        >
+
+          <td class="ps-4 fw-semibold">
+            {{i+1}}
+          </td>
+
+          <td>
+            {{d.employeeId}}
+          </td>
+
+          <td class="fw-semibold">
+            {{d.employeeName}}
+          </td>
+
+          <td>
+            {{d.email}}
+          </td>
+
+          <td class="fw-semibold text-success">
+            ₹ {{d.salary}}
+          </td>
+
+          <td>
+
+            <span
+              class="badge rounded-pill px-3 py-2"
+              style="
+                background-color:#ede9fe;
+                color:#5b21b6;
+              "
+            >
+              {{d.designation}}
+            </span>
+
+          </td>
+
+          <td>
+            {{d.departmentName}}
+          </td>
+
+          <!-- Update -->
+          <td class="text-center">
+
+            <a
+              (click)="editEmployeeDetails(d.employeeId)"
+              style="
+                color:#6c63ff;
+                cursor:pointer;
+                font-size:1.1rem;
+              "
+            >
+
+              <fa-icon [icon]="faPenToSquare"></fa-icon>
+
+            </a>
+
+          </td>
+
+          <!-- Delete -->
+          <td class="text-center pe-4">
+
+            <a
+              (click)="deleteEmployee(d.employeeId)"
+              style="
+                color:#d63384;
+                cursor:pointer;
+                font-size:1.1rem;
+              "
+            >
+
+              <fa-icon [icon]="faTrash"></fa-icon>
+
+            </a>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

@@ -1,0 +1,115 @@
+<div
+  class="card border-0 shadow-lg rounded-4 overflow-hidden"
+  style="background-color: rgba(255,255,255,0.94);"
+>
+
+  <div
+    class="card-body p-4"
+    style="
+      background: linear-gradient(to right,#5d5b81,#7f53ac);
+      color:white;
+    "
+  >
+
+    <div class="d-flex flex-column">
+
+      <!-- Heading -->
+      <h2
+        class="fw-bold mb-2"
+        style="
+          font-family:'Poppins',sans-serif;
+          letter-spacing:0.5px;
+        "
+      >
+        <fa-icon [icon]="faUserShield"></fa-icon> Admin Dashboard
+      </h2>
+
+      <!-- Welcome -->
+      <h5
+        class="mb-3"
+        style="
+          font-family:'Segoe UI',sans-serif;
+          color:#f3e8ff;
+        "
+      >
+        Welcome, {{email}}
+      </h5>
+
+      <!-- Role Badge -->
+      <div>
+
+        <span
+          class="badge rounded-pill px-3 py-2"
+          style="
+            background-color: rgba(255,255,255,0.2);
+            color:#ffffff;
+            font-size:0.95rem;
+            font-family:'Poppins',sans-serif;
+            backdrop-filter: blur(4px);
+          "
+        >
+          Role: {{role}}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Breadcrumb -->
+<nav
+  style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%23808080'/%3E%3C/svg%3E&#34;);"
+  aria-label="breadcrumb"
+  class="mt-4"
+>
+
+  <ol
+    class="breadcrumb px-3 py-2 rounded-3 shadow-sm"
+    style="
+      background-color: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+    "
+  >
+
+    <li
+      class="breadcrumb-item active"
+      aria-current="page"
+      style="
+        color:#5d5b81;
+        font-weight:600;
+      "
+    >
+      Home
+    </li>
+
+    <li class="breadcrumb-item">
+
+      <a
+        routerLink="users"
+        class="text-decoration-none"
+        style="
+          color:#6c63ff;
+          font-weight:500;
+        "
+      >
+        Users
+      </a>
+
+    </li>
+
+    <li
+      class="breadcrumb-item active"
+      aria-current="page"
+      style="color:#6b7280;"
+    >
+      Users Data
+    </li>
+
+  </ol>
+
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,133 @@
+<nav *ngIf="user | async as user" class="navbar navbar-expand-lg rounded shadow-sm" style="background-color: #565272; color: #f8f9fa;">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1 text-white p-3">Employee management system</span>
+
+        <ul class="navbar-nav ms-auto">
+
+          <li *ngIf="user.role==='ADMIN'" class="nav-item dropdown">
+         <a
+  class="nav-link dropdown-toggle text-white fw-semibold d-flex align-items-center gap-2 pe-4"
+  role="button"
+  data-bs-toggle="dropdown"
+  aria-expanded="false"
+  style="
+    cursor:pointer;
+    font-family:'Poppins',sans-serif;
+  "
+>
+  <span
+    class="badge rounded-pill px-3 py-2"
+    style="
+      background-color: rgba(255,255,255,0.18);
+      color:#ffffff;
+      font-size:0.8rem;
+    "
+  >
+    {{user.role}}
+  </span>
+
+  <fa-icon [icon]="faUser"></fa-icon>
+
+  <span>
+    Manage
+  </span>
+</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/admin/users">Users List</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+
+
+        <li *ngIf="user.role==='HR'" class="nav-item dropdown">
+         <a
+  class="nav-link dropdown-toggle text-white fw-semibold d-flex align-items-center gap-2 pe-4"
+  role="button"
+  data-bs-toggle="dropdown"
+  aria-expanded="false"
+  style="
+    cursor:pointer;
+    font-family:'Poppins',sans-serif;
+  "
+>
+  <span
+    class="badge rounded-pill px-3 py-2"
+    style="
+      background-color: rgba(255,255,255,0.18);
+      color:#ffffff;
+      font-size:0.8rem;
+    "
+  >
+    {{user.role}}
+  </span>
+
+  <fa-icon [icon]="faUser"></fa-icon>
+
+  <span>
+    Manage
+  </span>
+</a>
+          <ul class="dropdown-menu">
+             <li><a class="dropdown-item" routerLink="employees/">Home</a></li>
+            <li><a class="dropdown-item" routerLink="/employees/employeesList">Employees List</a></li>
+            <li><a class="dropdown-item" routerLink="/employees/createEmployee">Create Employee</a></li>
+            <li><a class="dropdown-item" routerLink="/employees/employeesList">Update Employee</a></li>
+<li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+
+         <li *ngIf="user.role==='EMPLOYEE'" class="nav-item dropdown">
+          <a
+  class="nav-link dropdown-toggle text-white fw-semibold d-flex align-items-center gap-2 pe-4"
+  role="button"
+  data-bs-toggle="dropdown"
+  aria-expanded="false"
+  style="
+    cursor:pointer;
+    font-family:'Poppins',sans-serif;
+  "
+>
+  <span
+    class="badge rounded-pill px-3 py-2"
+    style="
+      background-color: rgba(255,255,255,0.18);
+      color:#ffffff;
+      font-size:0.8rem;
+    "
+  >
+    {{user.role}}
+  </span>
+
+  <fa-icon [icon]="faUser"></fa-icon>
+
+  <span>
+    Manage
+  </span>
+</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/profile">Employees Profile</a></li>
+<li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+        </ul>
+      
+
+  </div>
+
+</nav>
+
+
+
+<div class="container mt-4">
+
+      <div *ngIf="message"
+     class="alert alert-success">
+
+   {{message}}
+
+</div>
+  <router-outlet></router-outlet>
+</div>

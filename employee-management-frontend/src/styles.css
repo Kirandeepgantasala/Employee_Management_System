@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body{
+background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.dropdown-menu{
+    background-color:#f8f7ff !important;
+    border:1px solid #d6d1f0 !important;
+    border-radius:12px !important;
+}
+
+.dropdown-item{
+    color:#403b5f !important;
+    font-weight:500;
+}
+
+.dropdown-item:hover{
+    background-color:#ece9ff !important;
+    color:#2f2e41 !important;
+}
+
+.dropdown-divider{
+    border-color:#dcd6f7 !important;
+}

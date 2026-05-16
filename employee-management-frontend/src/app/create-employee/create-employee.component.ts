@@ -45,6 +45,7 @@ designations:any={
 
 
 onSubmit(createForm:any){
+  console.log("Create employee on submit method ")
 this.employeeService.createEmployee(this.createEmployeeRequest).subscribe({
  
   next:(data:CreateEmployeeRequest)=>{

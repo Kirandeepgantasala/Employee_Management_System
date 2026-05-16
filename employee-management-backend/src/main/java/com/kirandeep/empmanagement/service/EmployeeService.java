@@ -76,6 +76,7 @@ Department dept = departmentRepository.findById(empRequestDto.getDepartmentId())
 	System.out.println("http://localhost:4200/reset-password/"+token);
 	}
 	catch(Exception e) {
+		e.printStackTrace();
 		throw new RuntimeException("Unable to send email",e);
 	}
 		System.out.println("http://localhost:4200/reset-password/"+token);

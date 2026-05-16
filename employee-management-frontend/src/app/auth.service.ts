@@ -24,22 +24,80 @@ export class AuthService {
   ) {
     this.getRole();
   }
-  base_url = 'http://localhost:8080/employees';
-  url = 'http://localhost:8080/auth/login';
-  register_url = 'http://localhost:8080/auth/register';
+  private url = 'https://employee-management-system-bg9v.onrender.com';
+  // base_url = 'http://localhost:8080/employees';
+  // url = 'http://localhost:8080/auth/login';
 
-  users_url = 'http://localhost:8080/users';
+
+  // users_url = 'http://localhost:8080/users';
 
   private userSource = new BehaviorSubject<any>(this.getSavedUser());
   currentUser = this.userSource.asObservable();
 
   login(loginRequest: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(this.url, loginRequest).pipe(
+    return this.http.post<AuthResponse>(`${this.url}/auth/login`, loginRequest).pipe(
       tap((response: any) => {
         localStorage.setItem('userDetails', JSON.stringify(response));
       }),
     );
   }
+
+
+  register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(`${this.url}/auth/register`, registerRequest);
+  }
+
+
+
+
+  getAllUsers(): Observable<UserResponse[]> {
+    return this.http.get<UserResponse[]>(`${this.url}/users/allusers`);
+  }
+
+
+  resetPassword(
+    token: string,
+    passwordResetRequest: PasswordResetRequest,
+  ): Observable<any> {
+    return this.http.post<any>(
+      `${this.url}/auth/reset-password/${token}`,
+      passwordResetRequest,
+    );
+  }
+
+
+  forgotPassword(forgotPassword: ForgotPassword):Observable<any> {
+    return this.http.post<any>(
+      `${this.url}/auth/forgot-password`,
+      forgotPassword,
+    );
+  }
+
+
+
+  updateRole(
+    id: number,
+    updateUserRole: UpdateUserRole,
+  ): Observable<UserResponse> {
+    return this.http.patch<UserResponse>(
+      `${this.url}/users/${id}/role`,
+      updateUserRole,
+    );
+  }
+
+  updateAccess(
+    id: number,
+    updateUserStatus: UpdateUserStatus,
+  ): Observable<UserResponse> {
+    return this.http.patch<UserResponse>(
+      `${this.url}/users/${id}/status`,
+      updateUserStatus,
+    );
+  }
+
+
+
+
 
   logout() {
     localStorage.removeItem('userDetails');
@@ -61,26 +119,9 @@ export class AuthService {
     return !this.isTokenExpired();
   }
 
-  register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(this.register_url, registerRequest);
-  }
+  
 
-  resetPassword(
-    token: string,
-    passwordResetRequest: PasswordResetRequest,
-  ): Observable<any> {
-    return this.http.post<any>(
-      `http://localhost:8080/auth/reset-password/${token}`,
-      passwordResetRequest,
-    );
-  }
-
-  forgotPassword(forgotPassword: ForgotPassword):Observable<any> {
-    return this.http.post<any>(
-      `http://localhost:8080/auth/forgot-password`,
-      forgotPassword,
-    );
-  }
+  
 
   // promoteToHR(id:Number):Observable<User>{
   //   return this.http.patch<User>
@@ -89,29 +130,6 @@ export class AuthService {
   //   );
   // }
 
-  getAllUsers(): Observable<UserResponse[]> {
-    return this.http.get<UserResponse[]>(`${this.users_url}/allusers`);
-  }
-
-  updateRole(
-    id: number,
-    updateUserRole: UpdateUserRole,
-  ): Observable<UserResponse> {
-    return this.http.patch<UserResponse>(
-      `${this.users_url}/${id}/role`,
-      updateUserRole,
-    );
-  }
-
-  updateAccess(
-    id: number,
-    updateUserStatus: UpdateUserStatus,
-  ): Observable<UserResponse> {
-    return this.http.patch<UserResponse>(
-      `${this.users_url}/${id}/status`,
-      updateUserStatus,
-    );
-  }
 
   getSavedUser() {
     const userData = localStorage.getItem('userDetails');

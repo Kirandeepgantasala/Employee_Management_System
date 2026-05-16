@@ -33,9 +33,9 @@ public class DataInitialization {
 	public CommandLineRunner createHR(PasswordEncoder passwordEncoder,AppUserRepository appUserRepository) {
 		return args->{
 		
-			if(appUserRepository.findByEmail("HRSys@gmail.com").isEmpty()) {
+			if(appUserRepository.findByEmail("hrSys@gmail.com").isEmpty()) {
 				AppUser hr = new AppUser();
-				hr.setEmail("HrSys@gmail.com");
+				hr.setEmail("hrSys@gmail.com");
 				hr.setPassword(passwordEncoder.encode("admin@123"));
 				hr.setRole(Role.HR);
 				hr.setEnabled(true);

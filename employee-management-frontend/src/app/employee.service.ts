@@ -9,7 +9,9 @@ import { UpdateEmployeeRequest } from './model/UpdateEmployeeRequest';
   providedIn: 'root'
 })
 export class EmployeeService {
-private apiUrl = "http://localhost:8080/employees";
+
+private apiUrl = 'https://employee-management-system-bg9v.onrender.com/employees';
+
   constructor(private http:HttpClient) { }
 
   getEmployee(employeeId: number):Observable<EmployeeResponse>{

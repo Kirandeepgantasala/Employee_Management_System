@@ -56,8 +56,8 @@ this.createEmployeeRequest = {email:'',designation:'',salary:null,employeeName:'
   },
   error:(error: any)=>{
     console.log("Error creating employee",error);
-    this.errorMessage=error.error.error || 'access denied';
-    ;
+  this.errorMessage = error?.error?.error || 'Access Denied';
+    
     this.createEmployeeRequest = {email:'',designation:'',salary:null,employeeName:'',departmentId:null};
 setTimeout(()=>{this.errorMessage=''},3000);
   }

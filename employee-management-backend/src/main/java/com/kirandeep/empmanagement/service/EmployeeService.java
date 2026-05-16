@@ -71,13 +71,14 @@ Department dept = departmentRepository.findById(empRequestDto.getDepartmentId())
 	String mailBody = "Hello "+savedEmployee.getEmployeeName()+"\n\n"
 	+"Login Credentials \n"+"Email:"+savedEmployee.getEmail()+"\n\n"+"Designation:"+savedEmployee.getDesignation()
 	+"\n\n"+"Link to Reset Password: http://localhost:4200/reset-password/"+token+"\n"+"This link will expire in 1 hour";
-	try {
-	emailService.sendEmail(appUser.getEmail(), "Your login credentials",mailBody);
-	
-	}
-	catch(Exception e) {
-		throw new RuntimeException("Unable to send email",e);
-	}
+//	try {
+//	emailService.sendEmail(appUser.getEmail(), "Your login credentials",mailBody);
+//	System.out.println("http://localhost:4200/reset-password/"+token);
+//	}
+//	catch(Exception e) {
+//		throw new RuntimeException("Unable to send email",e);
+//	}
+		System.out.println("http://localhost:4200/reset-password/"+token);
 	EmployeeDto empDto = new EmployeeDto();
 	
 	empDto.setDepartmentId(dept.getDepartmentId());

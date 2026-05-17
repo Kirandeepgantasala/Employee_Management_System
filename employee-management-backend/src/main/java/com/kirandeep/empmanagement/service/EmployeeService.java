@@ -79,7 +79,7 @@ Department dept = departmentRepository.findById(empRequestDto.getDepartmentId())
 //		e.printStackTrace();
 //		throw new RuntimeException("Unable to send email",e);
 //	}
-		System.out.println("Reset Password link \n"+employee.getEmail()+"http://localhost:4200/reset-password/"+token);
+		System.out.println("Reset Password link \n"+employee.getEmail()+"\n"+"https://kirandeep-employee-management-system.netlify.app/reset-password/"+token);
 	EmployeeDto empDto = new EmployeeDto();
 	
 	empDto.setDepartmentId(dept.getDepartmentId());
